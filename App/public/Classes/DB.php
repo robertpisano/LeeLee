@@ -87,9 +87,9 @@ class DB{
 	This is necessary for join statement where some tables have the same columns and you need to specify which table is from which column
 	*/
 	private static function getColumnsFromTable($tableName, $column = null){
-		if(!isset($tableName)
+		if(!isset($tableName))
 		{
-			$tableName = self::$tableName
+			$tableName = self::$tableName;
 		}
 		$query = "show COLUMNS from {$tableName}";
 		$query = ($column != null && $column != "") ? $query . " like \"{$column}\"" : $query;  
@@ -307,7 +307,7 @@ class DB{
 		else{ return 0;}
 
 
-		if(in_array($comparison, self::$Comparisons) == 0) {
+		if(!in_array($comparison, self::$comparators) == 0) {
 			echo "you fucked up the comparison value in the where statement.</br>"; 
 			return 0;
 		}
