@@ -1,8 +1,4 @@
-# macys-billboard
-
-This is a custom implementation built for Macy's Time Square Billboard activation.
-
-For full tech specs, please refer to the [Functional Requirements](https://drive.google.com/a/olapic.com/file/d/0B32ubiZK92MCcGhOdExiVWE5d2VFazNKajRLaWwyVTZRaFFz/view) documentation.
+#Cibo backend
 
 ## This project uses...
 
