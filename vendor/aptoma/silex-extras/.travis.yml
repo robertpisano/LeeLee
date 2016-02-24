@@ -1,0 +1,41 @@
+# Lint: http://lint.travis-ci.org
+
+notifications:
+  email:
+    - gunnar@aptoma.com
+
+language: php
+
+php:
+  - 5.3
+  - 5.4
+
+cache:
+  directories:
+    - vendor
+    - node_modules
+env:
+  global:
+    # travis encrypt CODECLIMATE_REPO_TOKEN=<https://codeclimate.com/repos/5375ae13e30ba0535b00a710/coverage_setup>
+    - secure: "R5FU+atovj/XTxz890KBiDkF1IwpOCgkcjpAsyL/apijPjH4Jn0m/aqF/9JBSKgBPr0lF/dA/p5gROotYERDooKZxUkRa25oFGLTYki1XlFvampk5/ibCI51w/WQLwSCGFqqy7CFyG10YhwQ64wUcazOCDOKteiyxg/+y9/jwow="
+
+git:
+  submodules: false
+
+before_install:
+
+install:
+  - npm install
+before_script:
+  - phpenv config-add php.ini
+  - mkdir -p build/logs
+
+script:
+  - ./node_modules/grunt-cli/bin/grunt travis
+
+after_script:
+  - php vendor/bin/coveralls -v
+  - ./vendor/bin/test-reporter --stdout > codeclimate.json
+  - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)' https://codeclimate.com/test_reports"
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml

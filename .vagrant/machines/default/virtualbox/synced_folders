@@ -1,0 +1,1 @@
+{"nfs":{"/home/vagrant/Cibo/API":{"nfs":true,"guestpath":"/home/vagrant/Cibo/API","hostpath":"/Users/jae/Cibo/LeeLee","disabled":false,"type":"nfs","map_uid":501,"map_gid":20,"nfs_udp":true,"nfs_version":3,"uuid":"2368448164"}},"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/jae/Cibo/LeeLee","disabled":false}}}
